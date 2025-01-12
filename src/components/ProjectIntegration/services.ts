@@ -1,0 +1,63 @@
+import {
+  Globe,
+  Smartphone,
+  Code,
+  Cloud,
+  Database,
+  Palette,
+  Layout,
+  Box,
+  Cpu,
+  Server,
+} from 'lucide-react';
+
+export const services = [
+  {
+    id: 'web-dev',
+    title: 'Web Development',
+    description: 'Custom web applications built with modern technologies and frameworks. Scalable, responsive, and optimized for performance.',
+    price: 5000,
+    icon: Globe,
+    categories: ['web', 'frontend'],
+  },
+  {
+    id: 'mobile-dev',
+    title: 'Mobile Development',
+    description: 'Native and cross-platform mobile applications for iOS and Android. User-friendly interfaces with robust functionality.',
+    price: 8000,
+    icon: Smartphone,
+    categories: ['mobile'],
+  },
+  {
+    id: 'api-dev',
+    title: 'API Development',
+    description: 'RESTful and GraphQL APIs designed for scalability and security. Complete documentation and testing included.',
+    price: 3000,
+    icon: Code,
+    categories: ['api', 'backend'],
+  },
+  {
+    id: 'cloud-solutions',
+    title: 'Cloud Solutions',
+    description: 'Cloud infrastructure setup and management. AWS, Azure, and Google Cloud expertise with optimization for cost and performance.',
+    price: 4000,
+    icon: Cloud,
+    categories: ['cloud', 'cloud-platforms'],
+  },
+  {
+    id: 'database-design',
+    title: 'Database Design',
+    description: 'Efficient database architecture and optimization. Support for SQL and NoSQL databases with security best practices.',
+    price: 2500,
+    icon: Database,
+    categories: ['database'],
+  },
+  {
+    id: 'ui-design',
+    title: 'UI/UX Design',
+    description: 'User-centered design approach with modern aesthetics. Includes user research, wireframes, and interactive prototypes.',
+    price: 4500,
+    icon: Palette,
+    categories: ['uiux', 'product'],
+  },
+];
