@@ -1,5 +1,5 @@
 import React from 'react';
-import { useServices } from '../../hooks/useServices';
+import { useServices } from '../useServices';
 
 export function PriceRange() {
   const { priceRange, setPriceRange } = useServices();

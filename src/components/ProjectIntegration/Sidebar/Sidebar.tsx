@@ -1,7 +1,7 @@
 import React from 'react';
 import { Menu, X } from 'lucide-react';
 import { SidebarItem } from './SidebarItem';
-import { categories } from '../../data/categories';
+import { categories } from '../../../data/categories';
 
 interface SidebarProps {
   isOpen: boolean;

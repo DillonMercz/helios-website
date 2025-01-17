@@ -7,6 +7,8 @@ import security from '../assets/security.jpeg';
 
 const HeliosLabs = () => {
   const [activeSection, setActiveSection] = useState('home');
+  const [activeFilter, setActiveFilter] = useState('all');
+  const [showAll, setShowAll] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -35,15 +37,15 @@ const HeliosLabs = () => {
   };
 
   const navItems = [
-    { id: 'home', label: 'Home', link: '/' },
-    { id: 'services', label: 'Services', link: './services' },
-    { id: 'products', label: 'Products', link: './products' },
-    { id: 'projects', label: 'Projects', link: './projects' },
-    { id: 'contact', label: 'Contact', link: './contact' }
+    { id: 'home', label: 'Home', link: '#home' },
+    { id: 'services', label: 'Services', link: '#services' },
+    { id: 'products', label: 'Products', link: '#products' },
+    { id: 'projects', label: 'Projects', link: '#projects' },
+    { id: 'contact', label: 'Contact', link: '#contact' }
   ];
 
   const SplitSection = ({ id, title, description, image, buttonText, buttonLink, imageLeft }) => (
-    <section id={id} className="relative py-20 px-4 bg-black text-white overflow-hidden">
+    <section id={id} className="relative py-20 px-4 bg-black/50 text-white overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className={`flex flex-col ${imageLeft ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12`}>
           {/* Image Side */}
@@ -155,22 +157,49 @@ const HeliosLabs = () => {
 
   const projects = [
     {
-      title: "AI Sports Prediction Platform",
-      description: "Advanced machine learning system achieving 75%+ accuracy in sports betting predictions.",
+      title: "Overdog Bets - AI Sports Prediction",
+      description: "AI-powered sports betting prediction system achieving 75%+ accuracy.",
       tech: ["Python", "TensorFlow", "AWS", "React"],
-      metrics: "75% prediction accuracy"
+      metrics: "75% prediction accuracy",
+      category: "ai",
+      link: "https://overdogbets.com/"
     },
     {
-      title: "Infinite LLM Input System",
-      description: "Revolutionary system enabling unlimited context windows for large language models.",
-      tech: ["PyTorch", "CUDA", "C++", "Redis"],
-      metrics: "100x improvement in context length"
+      title: "Critter Captures Website",
+      description: "Modern extermination service website with booking and service information.",
+      tech: ["Next.js", "Tailwind CSS", "Node.js"],
+      metrics: "30% increase in bookings",
+      category: "web",
+      link: "https://crittercaptures.cc/"
+    },
+    {
+      title: "NichuFolio - Developer Portfolio",
+      description: "Interactive portfolio showcasing developer skills and projects.",
+      tech: ["Next.js", "Tailwind CSS", "Framer Motion"],
+      metrics: "100% client satisfaction",
+      category: "web",
+      link: "https://nichufolio.vercel.app/"
     },
     {
       title: "Enterprise Resource Planning Suite",
       description: "Comprehensive ERP system for manufacturing industry with real-time analytics.",
       tech: ["Node.js", "Vue.js", "PostgreSQL", "Docker"],
-      metrics: "40% efficiency increase"
+      metrics: "40% efficiency increase",
+      category: "web"
+    },
+    {
+      title: "E-commerce Mobile App",
+      description: "Cross-platform mobile application with AR product visualization.",
+      tech: ["React Native", "Three.js", "Node.js"],
+      metrics: "30% increase in conversions",
+      category: "mobile"
+    },
+    {
+      title: "AI-Powered Chatbot",
+      description: "Enterprise-grade chatbot with natural language understanding.",
+      tech: ["Python", "TensorFlow", "Node.js"],
+      metrics: "90% query resolution rate",
+      category: "ai"
     }
   ];
 
@@ -197,7 +226,7 @@ const HeliosLabs = () => {
 
   return (
     <>
-      <div className="relative bg-black">
+      <div className="relative">
         {/* Navigation */}
         <div className="fixed top-8 left-1/2 -translate-x-1/2 z-50">
           <div className="media-object">
@@ -218,7 +247,7 @@ const HeliosLabs = () => {
         </div>
 
         {/* Hero Section */}
-        <section id="home" className="relative min-h-screen flex items-center">
+        <section id="home" className="relative min-h-screen flex items-center bg-black">
           <div className="absolute inset-0">
             <img 
               src={headerImage}
@@ -241,11 +270,16 @@ const HeliosLabs = () => {
           </div>
         </section>
 
-              <h1 className='italic'>Software is a great combination between artistry and engineering. - Bill Gates</h1>
-        
+        {/* Quote Section */}
+        <section className="relative py-20 px-4 bg-black text-white">
+          <div className="max-w-7xl mx-auto text-center">
+            <h1 className="text-3xl italic">"Software is a great combination between artistry and engineering." - Bill Gates</h1>
+          </div>
+        </section>
+
         {/* Split Sections */}
         {splitSections.map((section) => (
-          <SplitSection key={section[1]} {...section} />
+          <SplitSection key={section.id} {...section} />
         ))}
 
         {/* Services Section */}
@@ -276,23 +310,74 @@ const HeliosLabs = () => {
         {/* Featured Projects */}
         <section id="projects" className="relative py-20 px-4 bg-black text-white">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-5xl font-bold mb-16 text-center">Featured Projects</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {projects.map((project, index) => (
-                <div key={index} className="p-8 border border-white/20 rounded-xl hover:border-white/40 transition-all duration-300 hover:-translate-y-2">
-                  <h3 className="text-2xl font-bold mb-4">{project.title}</h3>
-                  <p className="text-gray-400 mb-6">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tech.map((tech, idx) => (
-                      <span key={idx} className="px-3 py-1 bg-white/10 rounded-full text-sm">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="text-green-400 font-semibold">{project.metrics}</div>
-                </div>
-              ))}
+            <h2 className="text-5xl font-bold mb-16 text-center">Our Portfolio</h2>
+            
+            {/* Filters */}
+            <div className="flex flex-wrap gap-4 justify-center mb-12">
+              <button 
+                className="px-6 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                onClick={() => setActiveFilter('all')}
+              >
+                All Projects
+              </button>
+              <button 
+                className="px-6 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                onClick={() => setActiveFilter('ai')}
+              >
+                AI/ML
+              </button>
+              <button 
+                className="px-6 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                onClick={() => setActiveFilter('web')}
+              >
+                Web Development
+              </button>
+              <button 
+                className="px-6 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                onClick={() => setActiveFilter('mobile')}
+              >
+                Mobile Apps
+              </button>
             </div>
+
+            {/* Projects Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {projects
+                .filter(project => activeFilter === 'all' || project.category === activeFilter)
+                .slice(0, showAll ? projects.length : 3)
+                .map((project, index) => (
+                  <a 
+                    key={index}
+                    href={project.link || '#'}
+                    target={project.link ? "_blank" : undefined}
+                    rel={project.link ? "noopener noreferrer" : undefined}
+                    className="p-8 border border-white/20 rounded-xl hover:border-white/40 transition-all duration-300 hover:-translate-y-2 block"
+                  >
+                    <h3 className="text-2xl font-bold mb-4">{project.title}</h3>
+                    <p className="text-gray-400 mb-6">{project.description}</p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.tech.map((tech, idx) => (
+                        <span key={idx} className="px-3 py-1 bg-white/10 rounded-full text-sm">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="text-green-400 font-semibold">{project.metrics}</div>
+                  </a>
+                ))}
+            </div>
+
+            {/* View More Button */}
+            {projects.length > 3 && !showAll && (
+              <div className="text-center mt-12">
+                <button
+                  onClick={() => setShowAll(true)}
+                  className="px-8 py-4 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition-colors duration-300"
+                >
+                  View All Projects
+                </button>
+              </div>
+            )}
           </div>
         </section>
 
@@ -432,7 +517,7 @@ const HeliosLabs = () => {
       </div>
 
       {/* Background color extension */}
-      <div className="fixed inset-0 -z-10 bg-black" />
+      <div className="fixed inset-0 -z-10 bg-black/95" />
     </>
   );
 };

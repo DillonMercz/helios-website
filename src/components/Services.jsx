@@ -1,7 +1,7 @@
 import { useServices } from './ProjectIntegration/useServices';
-import ServiceCard from './ProjectIntegration/ServiceCard/ServiceCard';
-import Filters from './ProjectIntegration/Filters/Filters';
-import Sidebar from './ProjectIntegration/Sidebar/Sidebar';
+import { ServiceCard } from './ProjectIntegration/ServiceCard/ServiceCard';
+import { Filters } from './ProjectIntegration/Filters/Filters';
+import { Sidebar } from './ProjectIntegration/Sidebar/Sidebar';
 
 const Services = () => {
   const { filteredServices } = useServices();

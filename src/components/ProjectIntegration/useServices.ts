@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { services } from '../data/services';
+import { services } from '../../data/services';
 
 interface ServicesState {
   searchQuery: string;

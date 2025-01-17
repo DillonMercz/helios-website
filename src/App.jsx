@@ -7,7 +7,7 @@ import Contact from './components/Contact';
 function App() {
   return (
     <Router>
-      <div>
+      <div className="min-h-screen bg-black">
         <Routes>
           <Route path="/" element={<HeliosLabs />} />
           <Route path="/services" element={<Services />} />

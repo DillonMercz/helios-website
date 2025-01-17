@@ -1,6 +1,6 @@
 import React from 'react';
 import { Search } from 'lucide-react';
-import { useServices } from '../../hooks/useServices';
+import { useServices } from '../useServices';
 
 export function SearchBar() {
   const { searchQuery, setSearchQuery } = useServices();
